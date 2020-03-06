@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+    <title>Amount Splitor</title>
+    
+  
+  <body>
+    <div id="container">
+      <h1>Amount Splitor</h1>
+
+      <div id="calculator">
+        <form>
+          <p>How much was your bill?</p>
+          <p>Rs<input id="billamt" type="text" placeholder="Bill Amount" /></p>
+
+          <p>How was our service?</p>
+          <p>
+            <select id="serviceQual">
+              <option disabled selected value="0">-- Choose an Option --</option>
+              <option value="0-20">10&#37; &#45; Terrible</option>
+              <option value="20-40">30&#37; &#45; Bad</option>
+              <option value="40-60">50&#37; &#45; It was OK</option>
+              <option value="60-80">70&#37; &#45; good</option>
+              <option value="80-100">90&#37; &#45; Outstanding</option>
+            </select>
+          </p>
+        </form>
+        <p>How many people are sharing the bill?
+        <input id="peopleamt" type="text" placeholder="Number of People" />
+          people </p>
+        <button type="button" id="calculate">Calculate!</button>
+        
+      </div>
+      
+      <div id="totalAmt">
+        <p>
+        
+        
+        <span id="amt"></span>
+        <small id="each">Rs.each</small>
+        </p>  
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+function calculateAmt() {
+  var billAmt = document.getElementById("billamt").value;
+  var serviceQual = document.getElementById("serviceQual").value;
+  var numOfPeople = document.getElementById("peopleamt").value;
+
+  
+  if (billAmt === "") {
+    alert("Please enter the Amount");
+    return;
+  }
+  
+  if (numOfPeople === "" || numOfPeople <= 1) {
+    numOfPeople = 1;
+    document.getElementById("each").style.display = "none";
+  } else {
+    document.getElementById("each").style.display = "block";
+  }
+
+  
+  var total = (billAmt) / numOfPeople;
+  
+  document.getElementById("totalAmt").style.display = "block";
+  document.getElementById("amt").innerHTML = total;
+
+}
+
+
+document.getElementById("totalAmt").style.display = "none";
+document.getElementById("each").style.display = "none";
+
+
+document.getElementById("calculate").onclick = function() {
+  calculateAmt();
+
+}
+</script>
+
+<style>
+body {
+  font-family: Roboto;
+  background: #8E0E00;
+
+  background: -webkit-linear-gradient(to left, #8E0E00, #1F1C18);
+
+  background: linear-gradient(to left, #8E0E00, #1F1C18);
+  
+}
+
+container {
+  height: 525px;
+  width: 360px;
+  margin: 100px auto;
+  background: #f7f7f7;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+}
+
+ h1 {
+  background: #FF5733;
+  color: white;
+  margin: 0;
+  padding: 10px 100px;
+  text-transform: uppercase;
+  font-size: 30px;
+  font-weight: normal;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  text-align:center;
+}
+
+p {
+  color:white;
+  padding-left: 20px;
+}
+
+form input[type="text"] {
+  width=90px;
+}
+
+input {
+  
+  padding-left: 20px;
+}
+
+billamt {
+  font-size: 14px;
+  
+  color: #red;
+  background-color: #f7f7f7;
+  width: 60%;
+  padding: 5px 5px 8px 8px;
+}
+
+billamt:focus {
+  background: #fff;
+  border: 3px solid #2980b9;
+  outline: none;
+}
+
+peopleamt {
+  width: 60%;
+  padding: 5px 5px 8px 8px;
+  margin-left: 20px;
+  color: #red;
+  background-color: #f7f7f7;
+  font-size: 14px;
+}
+
+
+
+serviceQual {
+  padding: 13px 13px 20px 20px;
+  margin-left: 20px;
+  font-size: 25px;
+}
+
+button {
+  text-transform: uppercase;
+  font-weight: bold;
+  display: block;
+  margin: 30px auto;
+  background: #AD133A;
+  border-radius: 5px;
+  width: 200px;
+  height: 50px;
+  font-size: 17px;
+  color: white;
+}
+
+button:hover {
+  background: #4c2827;
+  border-bottom-color: #111;
+}
+
+button:active {
+  position: relative;
+  top: 1px;
+}
+
+totalAmt {
+  font-size: 30px;
+  margin-top: 5px;
+  text-align: center;
+}
+
+totalAmt:before {
+  
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+  text-transform: uppercase;
+}
+
+totalAmt sup {
+  font-size: 20px;
+  top: -18px;
+}
+
+totalAmt small {
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+}
+totalAmt span{
+  color:white;
+}
+</style>
